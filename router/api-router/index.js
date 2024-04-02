@@ -11,11 +11,12 @@ router
   .route("/users")
   .get(async (req, res) => {
     try {
+      const documentCount = await userModel.countDocuments();
       const users = await userModel
         .find({})
         .limit(20)
         .skip(((req.query.page ?? 1) - 1) * 20);
-      res.status(200).json({ users });
+      res.status(200).json({ users, count: documentCount });
     } catch (error) {
       res.status(400);
     }

@@ -7,8 +7,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
-app.use(baseRouter);
-app.use(apiRouter);
+app.use("/",baseRouter);
+app.use("/api",apiRouter);
 
 app.listen(PORT,async () => {
   console.log(`🟢 Server running at port: ${PORT}`);

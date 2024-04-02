@@ -57,14 +57,22 @@ router
     }
   });
 
+router.route("/team").post(async (req, res) => {
+  try {
+    await teamModel.create(req.body.team);
+    res.status(200).json({ message: "team created successfully" });
+  } catch (error) {
+    res.status(400);
+  }
+});
 
-  router.route("/team").post(async (req, res) => {
-    try {
-      await teamModel.create(req.body.team);
-      res.status(200).json({ message: "team created successfully" });
-    } catch (error) {
-      res.status(400);
-    }
-  });
+router.route("/team/:id").get(async (req, res) => {
+  try {
+    const [team] = await teamModel.find({ _id: req.params.id });
+    res.status(200).json({ team });
+  } catch (error) {
+    res.status(400);
+  }
+});
 
 module.exports = router;

@@ -9,6 +9,7 @@
 |`/api/users`|POST|Adds a new user.|
 |`/api/users/:id`|PUT|Updates a specific user by ID.|
 |`/api/users/:id`|DELETE|Deletes a specific user by ID.|
+|`/api/team`|POST|Creates a new team.|
 
 ### /api/users `GET`
 
@@ -230,6 +231,54 @@
 ```json
 {
   "message": "user deleted successfully"
+}
+```
+
+#### Error Responses
+
+| Status Code | Description               |
+|-------------|---------------------------|
+| 400         | Indicates a bad request.  |
+
+
+
+### Create Team
+
+- **URL**: `/api/team`
+- **Method**: `POST`
+- **Description**: Creates a new team.
+
+#### Request Body
+
+| Field    | Type   | Description                           |
+|----------|--------|---------------------------------------|
+| `team`   | Object | Team object to be created.            |
+
+#### Response
+
+| Status Code | Content Type    | Body                 |
+|-------------|-----------------|----------------------|
+| 200         | `application/json` | Message object       |
+| 400         | -               | -                    |
+
+- **Note**: The response contains a message indicating the success of the operation.
+
+##### Example Request Body
+
+```json
+{
+  "team": {
+    "name": "New Team",
+    "members": ["user1_id", "user2_id"],
+  }
+}
+```
+
+##### Example Response Body (Status Code: 200 OK)
+
+```json
+{
+  "message": "team created successfully"
 }
 ```
 

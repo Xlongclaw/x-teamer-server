@@ -1,3 +1,4 @@
+const teamModel = require("../../database/models/teamModel");
 const userModel = require("../../database/models/userModel");
 
 const router = require("express").Router();
@@ -51,6 +52,16 @@ router
     try {
       await userModel.deleteOne({ id: req.params.id });
       res.status(200).json({ message: "user deleted succesfully" });
+    } catch (error) {
+      res.status(400);
+    }
+  });
+
+
+  router.route("/team").post(async (req, res) => {
+    try {
+      await teamModel.create(req.body.team);
+      res.status(200).json({ message: "team created successfully" });
     } catch (error) {
       res.status(400);
     }

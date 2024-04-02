@@ -5,8 +5,9 @@
 |---|---|---|
 |`/api`|GET|Returns a message indicating that it is the root of the API.|
 |`/api/users`|GET|Retrieves a list of users with pagination support.|
+|`/api/users/:id`|GET|Retrieves a specific user by ID.|
 
-#### /api/users `GET`
+### /api/users `GET`
 
 ###### Query Parameters
 
@@ -51,3 +52,41 @@
 | Status Code | Description              |
 | ----------- | ------------------------ |
 | 400         | Indicates a bad request. |
+
+
+### /api/users/:id `GET`
+
+#### URL Parameters
+
+| Parameter | Type   | Description                    |
+|-----------|--------|--------------------------------|
+| `id`      | String | ID of the user to retrieve.    |
+
+#### Response
+
+| Status Code | Content Type    | Body                |
+|-------------|-----------------|---------------------|
+| 200         | `application/json` | User object         |
+| 400         | -               | -                   |
+
+- **Note**: The response contains the user object.
+
+##### Example Response Body (Status Code: 200 OK)
+
+```json
+{
+  "user": {
+    "_id": "user_id",
+    "username": "user_username",
+    "email": "user_email@example.com",
+    // other user properties
+  }
+}
+```
+
+#### Error Responses
+
+| Status Code | Description               |
+|-------------|---------------------------|
+| 400         | Indicates a bad request.  |
+

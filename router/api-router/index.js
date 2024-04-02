@@ -18,4 +18,13 @@ router.route("/users").get(async (req, res) => {
   }
 });
 
+router.route("/users/:id").get(async (req, res) => {
+  try {
+    const [user] = await userModel.find({ id: req.params.id });
+    res.status(200).json({ user });
+  } catch (error) {
+    res.status(400);
+  }
+});
+
 module.exports = router;

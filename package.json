@@ -1,0 +1,25 @@
+{
+  "name": "x-teamer",
+  "version": "1.0.0",
+  "description": "A Node.js Server integrated with mongodb, designed to handle x-teamer client application requests.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xlongclaw/x-teamer-server.git"
+  },
+  "keywords": [
+    "server",
+    "node.js",
+    "mongodb",
+    "x-teamer"
+  ],
+  "author": "Madhuresh Verma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xlongclaw/x-teamer-server/issues"
+  },
+  "homepage": "https://github.com/Xlongclaw/x-teamer-server#readme"
+}

@@ -1,5 +1,7 @@
 # X Teamer server
 
+[Vercel deploy link](https://x-teamer-server.vercel.app/)
+
 ### APIs
 
 | Endpoint         | Method | Description                                                  |

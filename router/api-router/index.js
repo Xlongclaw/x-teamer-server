@@ -28,13 +28,24 @@ router
     }
   });
 
-router.route("/users/:id").get(async (req, res) => {
-  try {
-    const [user] = await userModel.find({ id: req.params.id });
-    res.status(200).json({ user });
-  } catch (error) {
-    res.status(400);
-  }
-});
+router
+  .route("/users/:id")
+  .get(async (req, res) => {
+    try {
+      const [user] = await userModel.find({ id: req.params.id });
+      res.status(200).json({ user });
+    } catch (error) {
+      res.status(400);
+    }
+  })
+  .put(async (req, res) => {
+    try {
+      const userUpdate = req.body.user
+      await userModel.findOneAndUpdate({ id: req.params.id },userUpdate);
+      res.status(200).json({ message: "user updated succesfully" });
+    } catch (error) {
+      res.status(400);
+    }
+  });
 
 module.exports = router;

@@ -7,6 +7,7 @@
 |`/api/users`|GET|Retrieves a list of users with pagination support.|
 |`/api/users/:id`|GET|Retrieves a specific user by ID.|
 |`/api/users`|POST|Adds a new user.|
+|`/api/users/:id`|PUT|Updates a specific user by ID.|
 
 ### /api/users `GET`
 
@@ -139,6 +140,59 @@
 ```json
 {
   "message": "user added successfully"
+}
+```
+
+#### Error Responses
+
+| Status Code | Description               |
+|-------------|---------------------------|
+| 400         | Indicates a bad request.  |
+
+
+### /api/users/:id `PUT`
+
+- **URL**: `/api/users/:id`
+- **Method**: `PUT`
+- **Description**: Updates a specific user by ID.
+
+#### URL Parameters
+
+| Parameter | Type   | Description                    |
+|-----------|--------|--------------------------------|
+| `id`      | String | ID of the user to update.      |
+
+#### Request Body
+
+| Field    | Type   | Description                           |
+|----------|--------|---------------------------------------|
+| `user`   | Object | Updated user object.                  |
+
+#### Response
+
+| Status Code | Content Type    | Body                 |
+|-------------|-----------------|----------------------|
+| 200         | `application/json` | Message object       |
+| 400         | -               | -                    |
+
+- **Note**: The response contains a message indicating the success of the operation.
+
+##### Example Request Body
+
+```json
+{
+  "user": {
+	    "first_name": "John",
+	    "last_name": "Doe",
+    }
+}
+```
+
+##### Example Response Body (Status Code: 200 OK)
+
+```json
+{
+  "message": "user updated successfully"
 }
 ```
 

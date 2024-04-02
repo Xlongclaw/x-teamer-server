@@ -8,6 +8,7 @@
 |`/api/users/:id`|GET|Retrieves a specific user by ID.|
 |`/api/users`|POST|Adds a new user.|
 |`/api/users/:id`|PUT|Updates a specific user by ID.|
+|`/api/users/:id`|DELETE|Deletes a specific user by ID.|
 
 ### /api/users `GET`
 
@@ -193,6 +194,42 @@
 ```json
 {
   "message": "user updated successfully"
+}
+```
+
+#### Error Responses
+
+| Status Code | Description               |
+|-------------|---------------------------|
+| 400         | Indicates a bad request.  |
+
+
+### Delete User
+
+- **URL**: `/api/users/:id`
+- **Method**: `DELETE`
+- **Description**: Deletes a specific user by ID.
+
+#### URL Parameters
+
+| Parameter | Type   | Description                    |
+|-----------|--------|--------------------------------|
+| `id`      | String | ID of the user to delete.      |
+
+#### Response
+
+| Status Code | Content Type    | Body                 |
+|-------------|-----------------|----------------------|
+| 200         | `application/json` | Message object       |
+| 400         | -               | -                    |
+
+- **Note**: The response contains a message indicating the success of the operation.
+
+##### Example Response Body (Status Code: 200 OK)
+
+```json
+{
+  "message": "user deleted successfully"
 }
 ```
 

@@ -1,6 +1,7 @@
 # X Teamer server
 
 [Vercel deploy link](https://x-teamer-server.vercel.app/)
+[Render deploy link](https://x-teamer-server.onrender.com)
 
 ### APIs
 
@@ -16,356 +17,273 @@
 | `/api/team/:id`  | GET    | Retrieves a specific team by ID.                             |
 | `/api/team`      | GET    | Retrieves all teams.                                         |
 
-### /api/users `GET`
+### Root Endpoint
 
-###### Query Parameters
+- **URL**: `/api`
+- **Method**: `GET`
+- **Description**: Returns a message indicating the root endpoint of the API.
 
-| Parameter       | Type   | Description                                        | Default |
-| --------------- | ------ | -------------------------------------------------- | ------- |
-| `page`          | Number | Page number for pagination (optional, default: 1). | 1       |
-| `filterOptions` | Object | values to filter data                              | {}      |
+### User Endpoints
 
-###### Response
+#### Get Users
 
-| Status Code | Content Type       | Body                  |
-| ----------- | ------------------ | --------------------- |
-| 200         | `application/json` | Array of user objects |
-| 400         | -                  | -                     |
+- **URL**: `/api/users`
+- **Method**: `GET`
+- **Description**: Retrieves a list of users with pagination support.
 
-- **Note**: The response contains an array of user objects.
+  - **Query Parameters**:
+    | Parameter | Type | Description | Example |
+    |---------------|---------|------------------------------------------|------------|
+    | `page` | Number | Page number for pagination (default: 1). | `?page=2` |
+    | `filterOptions` | JSON Object | Filter options for users. | `?filterOptions={"first_name":"John"}` |
 
-###### Example Response Body (Status Code: 200 OK)
+  - **Response**:
 
-```json
-{
-  "users": [
+    - **Status Code**: 200 OK
+    - **Content Type**: `application/json`
+    - **Body**: An array of user objects with pagination metadata.
+
+    ```json
     {
-      "id": 1,
-      "first_name": "Anet",
-      "last_name": "Doe",
-      "email": "adoe0@comcast.net",
-      "gender": "Female",
-      "avatar": "https://robohash.org/sintessequaerat.png?size=50x50&set=set1",
-      "domain": "Sales",
-      "available": false
+      "users": [
+        {
+          "id": 1,
+          "first_name": "Anet",
+          "last_name": "Doe",
+          "email": "adoe0@comcast.net",
+          "gender": "Female",
+          "avatar": "https://robohash.org/sintessequaerat.png?size=50x50&set=set1",
+          "domain": "Sales",
+          "available": false
+        }
+      ],
+      "count": 100
     }
-    // additional users
-  ]
-}
-```
+    ```
 
-- **Note**: The response contains an array of user objects.
-
-###### Error Responses
-
-| Status Code | Description              |
-| ----------- | ------------------------ |
-| 400         | Indicates a bad request. |
-
-### /api/users/:id `GET`
-
-#### URL Parameters
-
-| Parameter | Type   | Description                 |
-| --------- | ------ | --------------------------- |
-| `id`      | String | ID of the user to retrieve. |
-
-#### Response
-
-| Status Code | Content Type       | Body        |
-| ----------- | ------------------ | ----------- |
-| 200         | `application/json` | User object |
-| 400         | -                  | -           |
-
-- **Note**: The response contains the user object.
-
-##### Example Response Body (Status Code: 200 OK)
-
-```json
-{
-  "user": {
-    "id": 1,
-    "first_name": "Anet",
-    "last_name": "Doe",
-    "email": "adoe0@comcast.net",
-    "gender": "Female",
-    "avatar": "https://robohash.org/sintessequaerat.png?size=50x50&set=set1",
-    "domain": "Sales",
-    "available": false
-  }
-}
-```
-
-#### Error Responses
-
-| Status Code | Description              |
-| ----------- | ------------------------ |
-| 400         | Indicates a bad request. |
-
-### Add User
+#### Add User
 
 - **URL**: `/api/users`
 - **Method**: `POST`
-- **Description**: Adds a new user.
+- **Description**: Adds a new user to the system.
 
-#### Request Body
+  - **Request Body**:
+    | Field | Type | Description | Example |
+    |----------|--------|-------------------------|------------|
+    | `user` | Object | User information. | See example|
 
-| Field  | Type   | Description              |
-| ------ | ------ | ------------------------ |
-| `user` | Object | User object to be added. |
+    ```json
+    {
+      "user": {
+        "id": 1,
+        "first_name": "Anet",
+        "last_name": "Doe",
+        "email": "adoe0@comcast.net",
+        "gender": "Female",
+        "avatar": "https://robohash.org/sintessequaerat.png?size=50x50&set=set1",
+        "domain": "Sales",
+        "available": false
+      }
+    }
+    ```
 
-#### Response
+  - **Response**:
 
-| Status Code | Content Type       | Body           |
-| ----------- | ------------------ | -------------- |
-| 200         | `application/json` | Message object |
-| 400         | -                  | -              |
+    - **Status Code**: 200 OK
+    - **Content Type**: `application/json`
+    - **Body**: A message confirming the successful addition of the user.
 
-- **Note**: The response contains a message indicating the success of the operation.
+    ```json
+    {
+      "message": "user added successfully"
+    }
+    ```
 
-##### Example Request Body
+#### Get User by ID
 
-```json
-{
-  "user": {
-    "id": 1,
-    "first_name": "Anet",
-    "last_name": "Doe",
-    "email": "adoe0@comcast.net",
-    "gender": "Female",
-    "avatar": "https://robohash.org/sintessequaerat.png?size=50x50&set=set1",
-    "domain": "Sales",
-    "available": false
-  }
-}
-```
+- **URL**: `/api/users/:id`
+- **Method**: `GET`
+- **Description**: Retrieves a specific user by their ID.
 
-##### Example Response Body (Status Code: 200 OK)
+  - **URL Parameters**:
+    | Parameter | Type | Description | Example |
+    |-----------|--------|---------------------------|------------|
+    | `id` | String | ID of the user to retrieve. | `123` |
 
-```json
-{
-  "message": "user added successfully"
-}
-```
+  - **Response**:
 
-#### Error Responses
+    - **Status Code**: 200 OK
+    - **Content Type**: `application/json`
+    - **Body**: The user object matching the provided ID.
 
-| Status Code | Description              |
-| ----------- | ------------------------ |
-| 400         | Indicates a bad request. |
+    ```json
+    {
+      "user": {
+        "id": 1,
+        "first_name": "Anet",
+        "last_name": "Doe",
+        "email": "adoe0@comcast.net",
+        "gender": "Female",
+        "avatar": "https://robohash.org/sintessequaerat.png?size=50x50&set=set1",
+        "domain": "Sales",
+        "available": false
+      }
+    }
+    ```
 
-### /api/users/:id `PUT`
+#### Update User
 
 - **URL**: `/api/users/:id`
 - **Method**: `PUT`
-- **Description**: Updates a specific user by ID.
+- **Description**: Updates a specific user by their ID.
 
-#### URL Parameters
+  - **URL Parameters**:
+    | Parameter | Type | Description | Example |
+    |-----------|--------|---------------------------|------------|
+    | `id` | String | ID of the user to update. | `123` |
 
-| Parameter | Type   | Description               |
-| --------- | ------ | ------------------------- |
-| `id`      | String | ID of the user to update. |
+  - **Request Body**:
+    | Field | Type | Description | Example |
+    |----------|--------|-------------------------|------------|
+    | `user` | Object | Updated user information.| See example|
 
-#### Request Body
+    ```json
+    {
+      "user": {
+        "id": 1,
+        "first_name": "Anet",
+        "last_name": "Doe",
+        "email": "adoe0@comcast.net",
+        "gender": "Female",
+        "avatar": "https://robohash.org/sintessequaerat.png?size=50x50&set=set1",
+        "domain": "Sales",
+        "available": false
+      }
+    }
+    ```
 
-| Field  | Type   | Description          |
-| ------ | ------ | -------------------- |
-| `user` | Object | Updated user object. |
+  - **Response**:
 
-#### Response
+    - **Status Code**: 200 OK
+    - **Content Type**: `application/json`
+    - **Body**: A message confirming the successful update of the user.
 
-| Status Code | Content Type       | Body           |
-| ----------- | ------------------ | -------------- |
-| 200         | `application/json` | Message object |
-| 400         | -                  | -              |
+    ```json
+    {
+      "message": "user updated successfully"
+    }
+    ```
 
-- **Note**: The response contains a message indicating the success of the operation.
-
-##### Example Request Body
-
-```json
-{
-  "user": {
-    "first_name": "John",
-    "last_name": "Doe"
-  }
-}
-```
-
-##### Example Response Body (Status Code: 200 OK)
-
-```json
-{
-  "message": "user updated successfully"
-}
-```
-
-#### Error Responses
-
-| Status Code | Description              |
-| ----------- | ------------------------ |
-| 400         | Indicates a bad request. |
-
-### Delete User
+#### Delete User
 
 - **URL**: `/api/users/:id`
 - **Method**: `DELETE`
-- **Description**: Deletes a specific user by ID.
+- **Description**: Deletes a specific user by their ID.
 
-#### URL Parameters
+  - **URL Parameters**:
+    | Parameter | Type | Description | Example |
+    |-----------|--------|---------------------------|------------|
+    | `id` | String | ID of the user to delete. | `123` |
 
-| Parameter | Type   | Description               |
-| --------- | ------ | ------------------------- |
-| `id`      | String | ID of the user to delete. |
+  - **Response**:
 
-#### Response
+    - **Status Code**: 200 OK
+    - **Content Type**: `application/json`
+    - **Body**: A message confirming the successful deletion of the user.
 
-| Status Code | Content Type       | Body           |
-| ----------- | ------------------ | -------------- |
-| 200         | `application/json` | Message object |
-| 400         | -                  | -              |
+    ```json
+    {
+      "message": "user deleted successfully"
+    }
+    ```
 
-- **Note**: The response contains a message indicating the success of the operation.
+### Team Endpoints
 
-##### Example Response Body (Status Code: 200 OK)
-
-```json
-{
-  "message": "user deleted successfully"
-}
-```
-
-#### Error Responses
-
-| Status Code | Description              |
-| ----------- | ------------------------ |
-| 400         | Indicates a bad request. |
-
-### Create Team
+#### Create Team
 
 - **URL**: `/api/team`
 - **Method**: `POST`
 - **Description**: Creates a new team.
 
-#### Request Body
+  - **Request Body**:
+    | Field | Type | Description | Example |
+    |----------|--------|-------------------------|------------|
+    | `team` | Object | Team information. | See example|
 
-| Field  | Type   | Description                |
-| ------ | ------ | -------------------------- |
-| `team` | Object | Team object to be created. |
+    ```json
+    {
+      "team": {
+        "_id": "team_id1",
+        "teamName": "Team Name 1",
+        "members": ["user1_id", "user2_id"]
+      }
+    }
+    ```
 
-#### Response
+- **Response**:
 
-| Status Code | Content Type       | Body           |
-| ----------- | ------------------ | -------------- |
-| 200         | `application/json` | Message object |
-| 400         | -                  | -              |
+  - **Status Code**: 200 OK
+  - **Content Type**: `application/json`
+  - **Body**: A message confirming the successful creation of the team.
 
-- **Note**: The response contains a message indicating the success of the operation.
-
-##### Example Request Body
-
-```json
-{
-  "team": {
-    "name": "New Team",
-    "members": ["user1_id", "user2_id"]
+  ```json
+  {
+    "message": "team created successfully"
   }
-}
-```
+  ```
 
-##### Example Response Body (Status Code: 200 OK)
-
-```json
-{
-  "message": "team created successfully"
-}
-```
-
-#### Error Responses
-
-| Status Code | Description              |
-| ----------- | ------------------------ |
-| 400         | Indicates a bad request. |
-
-### Get Team by ID
-
-- **URL**: `/api/team/:id`
-- **Method**: `GET`
-- **Description**: Retrieves a specific team by ID.
-
-#### URL Parameters
-
-| Parameter | Type   | Description                 |
-| --------- | ------ | --------------------------- |
-| `id`      | String | ID of the team to retrieve. |
-
-#### Response
-
-| Status Code | Content Type       | Body        |
-| ----------- | ------------------ | ----------- |
-| 200         | `application/json` | Team object |
-| 400         | -                  | -           |
-
-- **Note**: The response contains the team object.
-
-##### Example Response Body (Status Code: 200 OK)
-
-```json
-{
-  "team": {
-    "_id": "team_id",
-    "members": ["user1_id", "user2_id"]
-    // other team properties
-  }
-}
-```
-
-#### Error Responses
-
-| Status Code | Description              |
-| ----------- | ------------------------ |
-| 400         | Indicates a bad request. |
-
-
-### Get All Teams
+#### Get All Teams
 
 - **URL**: `/api/team`
 - **Method**: `GET`
-- **Description**: Retrieves all teams.
+- **Description**: Retrieves all teams from the system.
 
-#### Response
+  - **Response**:
 
-| Status Code | Content Type    | Body                 |
-|-------------|-----------------|----------------------|
-| 200         | `application/json` | Array of team objects|
-| 400         | -               | -                    |
+    - **Status Code**: 200 OK
+    - **Content Type**: `application/json`
+    - **Body**: An array of team objects.
 
-- **Note**: The response contains an array of team objects.
-
-##### Example Response Body (Status Code: 200 OK)
-
-```json
-{
-  "teams": [
+    ```json
     {
-      "_id": "team_id1",
-      "name": "Team Name 1",
-      "members": ["user1_id", "user2_id"],
-      // other team properties
-    },
+      "teams": [
+        {
+          "_id": "team_id1",
+          "teamName": "Team Name 1",
+          "members": ["user1_id", "user2_id"]
+        },
+        {
+          "_id": "team_id2",
+          "teamName": "Team Name 2",
+          "members": ["user1_id", "user2_id"]
+        }
+      ]
+    }
+    ```
+
+#### Get Team by ID
+
+- **URL**: `/api/team/:id`
+- **Method**: `GET`
+- **Description**: Retrieves a specific team by its ID.
+
+  - **URL Parameters**:
+    | Parameter | Type | Description | Example |
+    |-----------|--------|---------------------------|------------|
+    | `id` | String | ID of the team to retrieve.| `123` |
+
+  - **Response**:
+
+    - **Status Code**: 200 OK
+    - **Content Type**: `application/json`
+    - **Body**: The team object matching the provided ID.
+
+    ```json
     {
-      "_id": "team_id2",
-      "name": "Team Name 2",
-      "members": ["user3_id", "user4_id"],
-      // other team properties
-    },
-    // additional teams
-  ]
-}
-```
-
-#### Error Responses
-
-| Status Code | Description               |
-|-------------|---------------------------|
-| 400         | Indicates a bad request.  |
+      "team": {
+        "_id": "team_id1",
+        "teamName": "Team Name 1",
+        "members": ["user1_id", "user2_id"]
+      }
+    }
+    ```

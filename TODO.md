@@ -7,6 +7,7 @@
 - [x] `DELETE` `/api/users/:id`: Delete a user.
 - [x] `POST` `/api/team`: Create a new team by selecting users from the list with unique domains and availability.
 - [x] `GET` `/api/team/:id`: Retrieve the details of a specific team by ID.
+- [x] `POST` `/api/team`: Retrieve all the teams.
 
 ### Refactor Code ->
 

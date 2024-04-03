@@ -20,7 +20,9 @@ router
         res.status(200).json({ users, count: documentCount });
       } else {
         const first_name = JSON.parse(req.query.filterOptions)["first_name"];
-        const documentCount = await userModel.countDocuments({ first_name: { $regex: `^${first_name}`, $options: "i" } });
+        const documentCount = await userModel.countDocuments({
+          first_name: { $regex: `^${first_name}`, $options: "i" },
+        });
         const users = await userModel
           .find({ first_name: { $regex: `^${first_name}`, $options: "i" } })
           .limit(20)
@@ -68,15 +70,24 @@ router
     }
   });
 
-router.route("/team").post(async (req, res) => {
-  try {
-    console.log(req.body);
-    await teamModel.create(req.body.team);
-    res.status(200).json({ message: "team created successfully" });
-  } catch (error) {
-    res.status(400);
-  }
-});
+router
+  .route("/team")
+  .post(async (req, res) => {
+    try {
+      await teamModel.create(req.body.team);
+      res.status(200).json({ message: "team created successfully" });
+    } catch (error) {
+      res.status(400);
+    }
+  })
+  .get(async (_, res) => {
+    try {
+      const teams = await teamModel.find({});
+      res.status(200).json({ teams });
+    } catch (error) {
+      res.status(400);
+    }
+  });
 
 router.route("/team/:id").get(async (req, res) => {
   try {

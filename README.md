@@ -14,6 +14,7 @@
 | `/api/users/:id` | DELETE | Deletes a specific user by ID.                               |
 | `/api/team`      | POST   | Creates a new team.                                          |
 | `/api/team/:id`  | GET    | Retrieves a specific team by ID.                             |
+| `/api/team`      | GET    | Retrieves all teams.                                         |
 
 ### /api/users `GET`
 
@@ -324,3 +325,47 @@
 | Status Code | Description              |
 | ----------- | ------------------------ |
 | 400         | Indicates a bad request. |
+
+
+### Get All Teams
+
+- **URL**: `/api/team`
+- **Method**: `GET`
+- **Description**: Retrieves all teams.
+
+#### Response
+
+| Status Code | Content Type    | Body                 |
+|-------------|-----------------|----------------------|
+| 200         | `application/json` | Array of team objects|
+| 400         | -               | -                    |
+
+- **Note**: The response contains an array of team objects.
+
+##### Example Response Body (Status Code: 200 OK)
+
+```json
+{
+  "teams": [
+    {
+      "_id": "team_id1",
+      "name": "Team Name 1",
+      "members": ["user1_id", "user2_id"],
+      // other team properties
+    },
+    {
+      "_id": "team_id2",
+      "name": "Team Name 2",
+      "members": ["user3_id", "user4_id"],
+      // other team properties
+    },
+    // additional teams
+  ]
+}
+```
+
+#### Error Responses
+
+| Status Code | Description               |
+|-------------|---------------------------|
+| 400         | Indicates a bad request.  |

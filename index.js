@@ -5,6 +5,7 @@ const baseRouter = require("./router/base-router");
 const apiRouter = require("./router/api-router");
 const connectDB = require("./database/connectDB");
 const bodyParser = require("body-parser");
+const path = require('node:path')
 
 dotenv.config();
 
@@ -18,9 +19,8 @@ const PORT = process.env.PORT;
 
 // Enable Cross-Origin Resource Sharing (CORS)
 app.use(cors());
-
-// Parse incoming request bodies in JSON format
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname , '/public')));
 
 // Routes for base URL and API
 app.use("/", baseRouter);

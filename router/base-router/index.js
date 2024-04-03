@@ -14,7 +14,7 @@ const router = require("express").Router();
  * @param {Object} res - Express response object.
  */
 router.route("/").get((_, res) => {
-  res.send("X-Teamer Server Running");
+  res.sendFile(`./server-info.html`,{ root: __dirname });
 });
 
 module.exports = router;

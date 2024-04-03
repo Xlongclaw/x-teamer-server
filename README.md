@@ -1,6 +1,7 @@
 # X Teamer server
 
 [Vercel deploy link](https://x-teamer-server.vercel.app/)
+
 [Render deploy link](https://x-teamer-server.onrender.com)
 
 ### APIs
@@ -17,7 +18,7 @@
 | `/api/team/:id`  | GET    | Retrieves a specific team by ID.                             |
 | `/api/team`      | GET    | Retrieves all teams.                                         |
 
-### Root Endpoint
+### 🟢 Root Endpoint
 
 - **URL**: `/api`
 - **Method**: `GET`
@@ -25,7 +26,7 @@
 
 ### User Endpoints
 
-#### Get Users
+#### 🟢 Get Users
 
 - **URL**: `/api/users`
 - **Method**: `GET`
@@ -61,7 +62,7 @@
     }
     ```
 
-#### Add User
+#### 🟢 Add User
 
 - **URL**: `/api/users`
 - **Method**: `POST`
@@ -99,7 +100,7 @@
     }
     ```
 
-#### Get User by ID
+#### 🟢 Get User by ID
 
 - **URL**: `/api/users/:id`
 - **Method**: `GET`
@@ -131,7 +132,7 @@
     }
     ```
 
-#### Update User
+#### 🟢 Update User
 
 - **URL**: `/api/users/:id`
 - **Method**: `PUT`
@@ -174,7 +175,7 @@
     }
     ```
 
-#### Delete User
+#### 🟢 Delete User
 
 - **URL**: `/api/users/:id`
 - **Method**: `DELETE`
@@ -199,7 +200,7 @@
 
 ### Team Endpoints
 
-#### Create Team
+#### 🟢 Create Team
 
 - **URL**: `/api/team`
 - **Method**: `POST`
@@ -232,7 +233,7 @@
   }
   ```
 
-#### Get All Teams
+#### 🟢 Get All Teams
 
 - **URL**: `/api/team`
 - **Method**: `GET`
@@ -261,7 +262,7 @@
     }
     ```
 
-#### Get Team by ID
+#### 🟢 Get Team by ID
 
 - **URL**: `/api/team/:id`
 - **Method**: `GET`

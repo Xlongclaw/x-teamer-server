@@ -11,5 +11,5 @@
 
 ### Refactor Code ->
 
-- [ ] remove extra code.
-- [ ] add docs.
+- [x] remove extra code.
+- [x] add docs.

@@ -11,24 +11,21 @@ router
   .route("/users")
   .get(async (req, res) => {
     try {
-      if (!req.query.filterOptions) {
-        const documentCount = await userModel.countDocuments();
-        const users = await userModel
-          .find({})
-          .limit(20)
-          .skip(((req.query.page ?? 1) - 1) * 20);
-        res.status(200).json({ users, count: documentCount });
-      } else {
-        const first_name = JSON.parse(req.query.filterOptions)["first_name"];
-        const documentCount = await userModel.countDocuments({
-          first_name: { $regex: `^${first_name}`, $options: "i" },
-        });
-        const users = await userModel
-          .find({ first_name: { $regex: `^${first_name}`, $options: "i" } })
-          .limit(20)
-          .skip(((req.query.page ?? 1) - 1) * 20);
-        res.status(200).json({ users, count: documentCount });
-      }
+      const { first_name, domain, gender } = JSON.parse(
+        req.query.filterOptions
+      );
+      const documentCount = await userModel.countDocuments({
+        first_name: { $regex: `^${first_name}`, $options: "i" },
+      });
+      const users = await userModel
+        .find({
+          first_name: { $regex: `^${first_name ?? ""}`, $options: "i" },
+          domain: { $regex: `^${domain ?? ""}`, $options: "i" },
+          gender: { $regex: `^${gender ?? ""}`, $options: "i" },
+        })
+        .limit(20)
+        .skip(((req.query.page ?? 1) - 1) * 20);
+      res.status(200).json({ users, count: documentCount });
     } catch (error) {
       res.status(400);
     }

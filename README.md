@@ -19,9 +19,10 @@
 
 ###### Query Parameters
 
-| Parameter | Type   | Description                                        | Default |
-| --------- | ------ | -------------------------------------------------- | ------- |
-| `page`    | Number | Page number for pagination (optional, default: 1). | 1       |
+| Parameter       | Type   | Description                                        | Default |
+| --------------- | ------ | -------------------------------------------------- | ------- |
+| `page`          | Number | Page number for pagination (optional, default: 1). | 1       |
+| `filterOptions` | Object | values to filter data                              | {}      |
 
 ###### Response
 
@@ -285,7 +286,6 @@
 | ----------- | ------------------------ |
 | 400         | Indicates a bad request. |
 
-
 ### Get Team by ID
 
 - **URL**: `/api/team/:id`
@@ -294,16 +294,16 @@
 
 #### URL Parameters
 
-| Parameter | Type   | Description                    |
-|-----------|--------|--------------------------------|
-| `id`      | String | ID of the team to retrieve.    |
+| Parameter | Type   | Description                 |
+| --------- | ------ | --------------------------- |
+| `id`      | String | ID of the team to retrieve. |
 
 #### Response
 
-| Status Code | Content Type    | Body                 |
-|-------------|-----------------|----------------------|
-| 200         | `application/json` | Team object          |
-| 400         | -               | -                    |
+| Status Code | Content Type       | Body        |
+| ----------- | ------------------ | ----------- |
+| 200         | `application/json` | Team object |
+| 400         | -                  | -           |
 
 - **Note**: The response contains the team object.
 
@@ -313,7 +313,7 @@
 {
   "team": {
     "_id": "team_id",
-    "members": ["user1_id", "user2_id"],
+    "members": ["user1_id", "user2_id"]
     // other team properties
   }
 }
@@ -321,6 +321,6 @@
 
 #### Error Responses
 
-| Status Code | Description               |
-|-------------|---------------------------|
-| 400         | Indicates a bad request.  |
+| Status Code | Description              |
+| ----------- | ------------------------ |
+| 400         | Indicates a bad request. |

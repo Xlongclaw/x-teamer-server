@@ -1,8 +1,8 @@
 # X Teamer server
 
-[Vercel deploy link](https://x-teamer-server.vercel.app/)
+[Render deploy link](https://x-teamer-server.onrender.com) (In Use)
 
-[Render deploy link](https://x-teamer-server.onrender.com)
+[Vercel deploy link](https://x-teamer-server.vercel.app/)
 
 ### APIs
 
